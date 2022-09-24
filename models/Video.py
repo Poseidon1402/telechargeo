@@ -6,5 +6,5 @@ class Video :
     
     def getFullDescription(self) -> str:
 
-        return self._artist + ' - ' + self._title
+        return '{0} - {1}'.format(self._artist, self._title)
     
