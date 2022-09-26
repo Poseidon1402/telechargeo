@@ -12,10 +12,13 @@ class AudioHandler:
             self._audios[i] = [val.itag, val.mime_type]
     
     def displayAllFetchedAudio(self) -> None:
+        self.fetchingAllAudio()
         for (key, value) in self._audios.items():
             print('{0} - format: {1}'.format(key + 1, value[1]))
     
     def downloadingTheChoosedAudio(self, choosed: int) -> None:
-        self.fetchingAllAudio()
         stream = self._streams.get_by_itag(self._audios[choosed][0])
         stream.download()
+    
+    def getAudiosFormat(self):
+        return [value[1] for value in self._audios.values()]
