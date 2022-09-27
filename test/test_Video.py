@@ -1,4 +1,4 @@
-from models.Video import Video
+from telechargeo.models.video import Video
 
 class TestVideo:
     
