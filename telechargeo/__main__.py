@@ -1,4 +1,5 @@
 from youtubesearchpython import VideosSearch
+from telechargeo.handlers.audioHandler import AudioHandler
 from telechargeo.models.video import Video
 
 if __name__ == "__main__":
@@ -7,6 +8,8 @@ if __name__ == "__main__":
     video = Video(artist, title)
 
     videosSearch = VideosSearch(video.getFullDescription(), limit = 5)
-
-    print(videosSearch.result()['result'][0]['title'])
-    print(videosSearch.result()['result'][0]['link'])
+    handler = AudioHandler(videosSearch.result()['result'][0]['link'])
+    handler.displayAllFetchedAudio()
+    choose = int(input('You choose: '))
+    handler.downloadingTheChoosedAudio(choose)
+    print('Video file downloaded successfully')
