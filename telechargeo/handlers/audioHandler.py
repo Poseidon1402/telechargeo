@@ -1,17 +1,25 @@
 from pytube import YouTube
+from pytube.cli import on_progress
 
 class AudioHandler:
-
+    """
+        Prepare the audio object for the download
+    """
     def __init__(self, url) -> None:
-        self._url = url
-        self._streams = YouTube(self._url).streams.filter(only_audio=True)
+        self._streams = YouTube(url, on_progress_callback=on_progress).streams.filter(only_audio=True)
         self._audios = {}
 
     def fetchingAllAudio(self) -> None:
+        """
+            Affect results to the audios dictionary
+        """
         for (i, val) in enumerate(self._streams):
             self._audios[i] = [val.itag, val.mime_type]
     
-    def downloadingTheChoosedAudio(self, choosed: int) -> None:
+    def downloadTheChoosedAudio(self, choosed: int) -> None:
+        """
+            Download the audio choosed by users
+        """
         stream = self._streams.get_by_itag(self._audios[choosed-1][0])
         stream.download()
     
