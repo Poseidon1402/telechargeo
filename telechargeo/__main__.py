@@ -1,13 +1,15 @@
 from youtubesearchpython import VideosSearch
 
 from telechargeo.handlers.audioHandler import AudioHandler
+from telechargeo.inputHandler import displayRequestedValue, setupArguments
 from telechargeo.models.video import Video
 from telechargeo.views.resultDisplayer import ResultDisplayer
 
-def main():
-    artist = input("Author: ")
-    title = input("Title: ")
-    video = Video(artist, title)
+def main(argv=None):
+    args = setupArguments()
+    displayRequestedValue()
+
+    video = Video(args.author, args.title)
 
     videosSearch = VideosSearch(video.getFullDescription(), limit = 5)
     resultDisplayer = ResultDisplayer(videosSearch.result()['result'])
