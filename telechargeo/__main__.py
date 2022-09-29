@@ -6,17 +6,21 @@ from telechargeo.models.video import Video
 from telechargeo.views.resultDisplayer import ResultDisplayer
 
 def main(argv=None):
+    """
+        Entry point of the command
+    """
     args = setupArguments()
     displayRequestedValue()
 
     video = Video(args.author, args.title)
 
     videosSearch = VideosSearch(video.getFullDescription(), limit = 5)
-    resultDisplayer = ResultDisplayer(videosSearch.result()['result'])
+    results = videosSearch.result()['result']
+    resultDisplayer = ResultDisplayer(results)
     resultDisplayer.displayResultOfTheSearch()
     
     choosed = int(input('Which will you choose ? '))
-    handler = AudioHandler(videosSearch.result()['result'][choosed-1]['link'])
+    handler = AudioHandler(results[choosed-1]['link'])
     resultDisplayer.displayAllAudioAvailableFormat(handler, choosed)
     
     choose = int(input('You choose: '))
