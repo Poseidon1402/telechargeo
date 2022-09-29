@@ -9,7 +9,7 @@ then convert it to an audio.
 
 Clone the repository
 ```bash
-    git clone url telechargeo
+    git clone https://github.com/Poseidon1402/telechargeo.git telechargeo
 ```
 Install telechargeo dependencies with pip
 
