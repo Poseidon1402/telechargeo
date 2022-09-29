@@ -1,12 +1,11 @@
 from pytube import YouTube
-from pytube.cli import on_progress
 
 class AudioHandler:
     """
         Prepare the audio object for the download
     """
     def __init__(self, url) -> None:
-        self._streams = YouTube(url, on_progress_callback=on_progress).streams.filter(only_audio=True)
+        self._streams = YouTube(url).streams.filter(only_audio=True)
         self._audios = {}
 
     def fetchingAllAudio(self) -> None:

@@ -18,8 +18,7 @@ def main():
     resultDisplayer.displayAllAudioAvailableFormat(handler, choosed)
     
     choose = int(input('You choose: '))
-    handler.downloadingTheChoosedAudio(choose)
-    print('Audio file downloaded successfully')
+    handler.downloadTheChoosedAudio(choose)
 
 
 if __name__ == "__main__":
