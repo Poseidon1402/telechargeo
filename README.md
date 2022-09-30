@@ -15,8 +15,9 @@ Install telechargeo dependencies with pip
 
 ```bash
     cd telechargeo
-    pip install -r requirements
+    python -m venv env
     source env/bin/activate
+    pip install -r requirements
 ```
 
 After that, you can begin to download video
