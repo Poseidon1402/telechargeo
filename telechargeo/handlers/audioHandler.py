@@ -19,8 +19,15 @@ class AudioHandler:
         """
             Download the audio choosed by users
         """
-        stream = self._streams.get_by_itag(self._audios[choosed-1][0])
-        stream.download()
+        try:
+            stream = self._streams.get_by_itag(self._audios[choosed-1][0])
+            stream.download()
+
+        except IndexError:
+            print('Index out of range')
+
+        except TypeError:
+            print('Type error detected ! Only integer is authorized')
     
     def getAudiosFormat(self):
         return [value[1] for value in self._audios.values()]
