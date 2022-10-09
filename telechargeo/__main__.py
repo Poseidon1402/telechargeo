@@ -1,3 +1,5 @@
+from prompt_toolkit import print_formatted_text, prompt
+from prompt_toolkit.formatted_text import FormattedText
 from youtubesearchpython import VideosSearch
 
 from telechargeo.handlers.audioHandler import AudioHandler
@@ -21,15 +23,15 @@ def main(argv=None):
         resultDisplayer = ResultDisplayer(results)
         resultDisplayer.displayResultOfTheSearch()
         
-        choosed = int(input('Which will you choose ? '))
+        choosed = int(prompt('Which will you choose ? '))
         handler = AudioHandler(results[choosed-1]['link'])
         resultDisplayer.displayAllAudioAvailableFormat(handler, choosed)
         
-        choose = int(input('You choose: '))
+        choose = int(prompt('You choose: '))
         handler.downloadTheChoosedAudio(choose)
 
     except KeyboardInterrupt:
-        print('The program was interrupted by the user')
+        print_formatted_text(FormattedText([('#FF0000', 'The program was interrupted by the user')]))
         
 
 if __name__ == "__main__":
