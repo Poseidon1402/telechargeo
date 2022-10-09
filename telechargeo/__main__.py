@@ -7,7 +7,7 @@ from telechargeo.handlers.audioHandler import AudioHandler
 from telechargeo.inputHandler import displayRequestedValue, setupArguments
 from telechargeo.models.video import Video
 from telechargeo.validator.rangeValidator import RangeValidator
-from telechargeo.views.resultDisplayer import ResultDisplayer
+from telechargeo.helpers.resultDisplayer import ResultDisplayer
 
 def askUserChoice(message) -> int:
     """
