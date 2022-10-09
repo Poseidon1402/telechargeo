@@ -40,9 +40,6 @@ To run tests, run the following command
 
 ![python](https://badgen.net/badge/pytube/12.1.0/red)
 
-![python](https://badgen.net/badge/youtube-search/1.6.6/red)
-
-
 
 ## Contributing
 
