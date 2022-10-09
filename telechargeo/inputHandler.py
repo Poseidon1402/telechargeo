@@ -1,4 +1,7 @@
 import argparse
+from time import sleep
+from prompt_toolkit import HTML
+from prompt_toolkit.shortcuts import ProgressBar
 
 def setupArguments(argv=None):
     """
@@ -27,3 +30,7 @@ def displayRequestedValue(argv=None):
     """
     args = setupArguments(argv)
     print(f'searching for the video {args.author} - {args.title}')
+    label = HTML('<ansired>Progression</ansired>: ')
+    with ProgressBar() as pb:
+        for i in pb(range(100), label=label):
+            sleep(.01)

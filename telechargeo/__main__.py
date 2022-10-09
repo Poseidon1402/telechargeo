@@ -27,12 +27,12 @@ def main(argv=None):
     try:
 
         args = setupArguments()
-        displayRequestedValue()
 
         video = Video(args.author, args.title)
 
         videosSearch = VideosSearch(video.getFullDescription(), limit = 5)
         results = videosSearch.result()['result']
+        displayRequestedValue()
         resultDisplayer = ResultDisplayer(results)
         resultDisplayer.displayResultOfTheSearch()
         
