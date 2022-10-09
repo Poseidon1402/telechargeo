@@ -6,16 +6,17 @@ from youtubesearchpython import VideosSearch
 from telechargeo.handlers.audioHandler import AudioHandler
 from telechargeo.inputHandler import displayRequestedValue, setupArguments
 from telechargeo.models.video import Video
+from telechargeo.validator.rangeValidator import RangeValidator
 from telechargeo.views.resultDisplayer import ResultDisplayer
 
-def askUserVideoChoice() -> int:
+def askUserChoice(message) -> int:
     """
         Ask user about his choice
         setup autocompletion
     """
     userPossibleChoice = WordCompleter(['1', '2', '3', '4', '5'])
-    choice = prompt('Which will you choose ? ', completer=userPossibleChoice,
-        complete_while_typing=True)
+    choice = prompt(message, completer=userPossibleChoice,
+        complete_while_typing=True, validator=RangeValidator())
 
     return int(choice)
 
@@ -35,11 +36,11 @@ def main(argv=None):
         resultDisplayer = ResultDisplayer(results)
         resultDisplayer.displayResultOfTheSearch()
         
-        choosed = askUserVideoChoice()
+        choosed = askUserChoice('Which will you choose ? ')
         handler = AudioHandler(results[choosed-1]['link'])
         resultDisplayer.displayAllAudioAvailableFormat(handler, choosed)
         
-        choose = int(prompt('You choose: '))
+        choose = askUserChoice('You choose: ')
         handler.downloadTheChoosedAudio(choose)
 
     except KeyboardInterrupt:
