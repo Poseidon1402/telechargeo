@@ -1,11 +1,23 @@
 from prompt_toolkit import print_formatted_text, prompt
 from prompt_toolkit.formatted_text import FormattedText
+from prompt_toolkit.completion import WordCompleter
 from youtubesearchpython import VideosSearch
 
 from telechargeo.handlers.audioHandler import AudioHandler
 from telechargeo.inputHandler import displayRequestedValue, setupArguments
 from telechargeo.models.video import Video
 from telechargeo.views.resultDisplayer import ResultDisplayer
+
+def askUserVideoChoice() -> int:
+    """
+        Ask user about his choice
+        setup autocompletion
+    """
+    userPossibleChoice = WordCompleter(['1', '2', '3', '4', '5'])
+    choice = prompt('Which will you choose ? ', completer=userPossibleChoice,
+        complete_while_typing=True)
+
+    return int(choice)
 
 def main(argv=None):
     """
@@ -23,7 +35,7 @@ def main(argv=None):
         resultDisplayer = ResultDisplayer(results)
         resultDisplayer.displayResultOfTheSearch()
         
-        choosed = int(prompt('Which will you choose ? '))
+        choosed = askUserVideoChoice()
         handler = AudioHandler(results[choosed-1]['link'])
         resultDisplayer.displayAllAudioAvailableFormat(handler, choosed)
         
